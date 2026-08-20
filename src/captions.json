@@ -1,0 +1,2998 @@
+          {
+  "$schema": "https://opencaptions.tools/schema/cwi/1.0.json",
+  "version": "1.0",
+  "metadata": {
+    "duration": 246.04,
+    "language": "pt",
+    "created_at": "2026-08-10T17:54:32.522Z",
+    "generator": "opencaptions/0.1.0",
+    "extractor_backend": "audio-vision-v1"
+  },
+  "cast": [
+    {
+      "id": "S0",
+      "name": "Personagem 1",
+      "color": "#6B8AFF",
+      "voice_profile": {
+        "pitch_baseline_hz": 150,
+        "pitch_p10": 150,
+        "pitch_p90": 150,
+        "volume_baseline_db": -20,
+        "volume_p10": -20,
+        "volume_p90": -20
+      }
+    },
+    {
+      "id": "S1",
+      "name": "Personagem 2",
+      "color": "#FF4D6D",
+      "voice_profile": {
+        "pitch_baseline_hz": 220,
+        "pitch_p10": 180,
+        "pitch_p90": 260,
+        "volume_baseline_db": -18,
+        "volume_p10": -24,
+        "volume_p90": -12
+      }
+    },
+    {
+      "id": "S2",
+      "name": "Personagem 3",
+      "color": "#00F5D4",
+      "voice_profile": {
+        "pitch_baseline_hz": 110,
+        "pitch_p10": 90,
+        "pitch_p90": 140,
+        "volume_baseline_db": -22,
+        "volume_p10": -26,
+        "volume_p90": -16
+      }
+    }
+  ],
+  "captions": [
+    {
+      "id": "ace6868b-2261-4862-95b1-26c0d1f2bfe8",
+      "start": 9.14,
+      "end": 9.62,
+      "speaker_id": "S0",
+      "words": [
+        {
+          "text": "E",
+          "start": 9.14,
+          "end": 9.62,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "aí",
+          "start": 9.62,
+          "end": 9.62,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        }
+      ]
+    },
+    {
+      "id": "7bb26c75-d3ff-4b2c-87d0-554681acaae0",
+      "start": 12.94,
+      "end": 17.9,
+      "speaker_id": "S0",
+      "words": [
+        {
+          "text": "É,",
+          "start": 12.94,
+          "end": 13.42,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "tá",
+          "start": 13.7,
+          "end": 13.86,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "ficando",
+          "start": 13.86,
+          "end": 14.16,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "o",
+          "start": 14.16,
+          "end": 14.3,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "maior",
+          "start": 14.3,
+          "end": 14.4,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "breu",
+          "start": 14.4,
+          "end": 14.8,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "aqui.",
+          "start": 14.8,
+          "end": 14.98,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "Parece",
+          "start": 15.2,
+          "end": 15.64,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "que",
+          "start": 15.64,
+          "end": 15.86,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "é",
+          "start": 15.86,
+          "end": 15.92,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "o",
+          "start": 15.92,
+          "end": 15.96,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "último",
+          "start": 15.96,
+          "end": 16.12,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "treino",
+          "start": 16.12,
+          "end": 16.42,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "da",
+          "start": 16.42,
+          "end": 16.56,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "noite.",
+          "start": 16.56,
+          "end": 16.8,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "Quem",
+          "start": 17,
+          "end": 17.16,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "topa?",
+          "start": 17.16,
+          "end": 17.5,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "Gretchen?",
+          "start": 17.62,
+          "end": 17.9,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        }
+      ]
+    },
+    {
+      "id": "420865e6-d34e-4912-9e4e-23c2e113bb74",
+      "start": 18.38,
+      "end": 23.4,
+      "speaker_id": "S1",
+      "words": [
+        {
+          "text": "Eu?",
+          "start": 18.38,
+          "end": 18.82,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "E",
+          "start": 19.14,
+          "end": 19.24,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "ter",
+          "start": 19.24,
+          "end": 19.48,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "que",
+          "start": 19.48,
+          "end": 19.64,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "aturar",
+          "start": 19.64,
+          "end": 19.96,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "o",
+          "start": 19.96,
+          "end": 20.2,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "bla",
+          "start": 20.2,
+          "end": 20.4,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "bla",
+          "start": 20.41,
+          "end": 20.48,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "bla",
+          "start": 20.5,
+          "end": 20.94,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "do",
+          "start": 20.94,
+          "end": 21.26,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "campeão",
+          "start": 21.26,
+          "end": 21.76,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "Olímpico",
+          "start": 21.76,
+          "end": 22.48,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "Chris",
+          "start": 22.48,
+          "end": 22.86,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "Klug?",
+          "start": 22.86,
+          "end": 23.4,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        }
+      ]
+    },
+    {
+      "id": "d8a3e467-6316-44fb-9a52-dae14bd19504",
+      "start": 23.88,
+      "end": 25.7,
+      "speaker_id": "S0",
+      "words": [
+        {
+          "text": "É,",
+          "start": 23.88,
+          "end": 24.08,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "deixa",
+          "start": 24.18,
+          "end": 24.36,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "pra",
+          "start": 24.36,
+          "end": 24.56,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "lá.",
+          "start": 24.56,
+          "end": 24.78,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "Até",
+          "start": 25,
+          "end": 25.18,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "mais,",
+          "start": 25.18,
+          "end": 25.48,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "gente!",
+          "start": 25.52,
+          "end": 25.7,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        }
+      ]
+    },
+    {
+      "id": "2b124355-5a32-46d9-add4-689971f6171f",
+      "start": 31.2,
+      "end": 31.98,
+      "speaker_id": "S0",
+      "words": [
+        {
+          "text": "C'mon!",
+          "start": 31.2,
+          "end": 31.98,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        }
+      ]
+    },
+    {
+      "id": "aecb593f-8819-42b6-949d-30c5420984b5",
+      "start": 32.58,
+      "end": 33.38,
+      "speaker_id": "S0",
+      "words": [
+        {
+          "text": "C'mon,",
+          "start": 32.58,
+          "end": 33,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "c'mon!",
+          "start": 33.02,
+          "end": 33.38,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        }
+      ]
+    },
+    {
+      "id": "ee515d1f-6d95-4570-9861-17b5cb50443a", 
+      "start": 43.58,
+      "end": 45.02,
+      "speaker_id": "S0",
+      "words": [
+        {
+          "text": "E",
+          "start": 43.58,
+          "end": 44.36,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "aí,",
+          "start": 44.36,
+          "end": 44.5,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "mudei",
+          "start": 44.58,
+          "end": 44.78,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "mal!",
+          "start": 44.78,
+          "end": 45.02,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        }
+      ]
+    },
+    {
+      "id": "35f06da4-d6e4-439d-a2a0-8bc2097306c7",
+      "start": 86.2,
+      "end": 88.84,
+      "speaker_id": "S0",
+      "words": [
+        {
+          "text": "O",
+          "start": 86.2,
+          "end": 87.36,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "que",
+          "start": 87.36,
+          "end": 88.52,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "é",
+          "start": 88.52,
+          "end": 88.54,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "isso?",
+          "start": 88.54,
+          "end": 88.84,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        }
+      ]
+    },
+    {
+      "id": "4a397735-eeb3-4934-a0d9-bb200d1da207",
+      "start": 106.3,
+      "end": 108.02,
+      "speaker_id": "S0",
+      "words": [
+        {
+          "text": "O",
+          "start": 106.3,
+          "end": 106.76,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "que",
+          "start": 106.76,
+          "end": 106.96,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "é",
+          "start": 106.96,
+          "end": 107.08,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "de",
+          "start": 107.08,
+          "end": 107.22,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "novo,",
+          "start": 107.22,
+          "end": 107.46,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "Scooby",
+          "start": 107.6,
+          "end": 107.82,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "Doo?",
+          "start": 107.82,
+          "end": 108.02,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        }
+      ]
+    },
+    {
+      "id": "828add33-d54c-4efa-882c-623057fe7eda",
+      "start": 113.74,
+      "end": 116.56,
+      "speaker_id": "S0",
+      "words": [
+        {
+          "text": "Não",
+          "start": 113.74,
+          "end": 114.2,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "há",
+          "start": 114.2,
+          "end": 114.48,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "cria",
+          "start": 114.48,
+          "end": 114.66,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "dura",
+          "start": 114.66,
+          "end": 115.06,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "como",
+          "start": 115.06,
+          "end": 115.4,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "o",
+          "start": 115.4,
+          "end": 115.56,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "Homem",
+          "start": 115.56,
+          "end": 115.88,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "das",
+          "start": 115.88,
+          "end": 116.02,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "Nefes.",
+          "start": 116.02,
+          "end": 116.56,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        }
+      ]
+    },
+    {
+      "id": "8988d8df-d31e-47ef-ba60-74b566918f59",
+      "start": 117.34,
+      "end": 123.06,
+      "speaker_id": "S0",
+      "words": [
+        {
+          "text": "Os",
+          "start": 117.34,
+          "end": 117.8,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "meus",
+          "start": 117.8,
+          "end": 117.9,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "heróis",
+          "start": 117.9,
+          "end": 118.38,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "da",
+          "start": 118.38,
+          "end": 118.5,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "prancha",
+          "start": 118.5,
+          "end": 118.86,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "vão",
+          "start": 118.86,
+          "end": 119.04,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "estar",
+          "start": 119.04,
+          "end": 119.26,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "lá.",
+          "start": 119.26,
+          "end": 119.56,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "A",
+          "start": 119.84,
+          "end": 119.98,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "gente",
+          "start": 119.98,
+          "end": 119.98,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "vai",
+          "start": 119.98,
+          "end": 119.98,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "ver",
+          "start": 119.98,
+          "end": 119.98,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "o",
+          "start": 119.98,
+          "end": 119.98,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "que",
+          "start": 119.98,
+          "end": 119.98,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "é",
+          "start": 119.98,
+          "end": 119.98,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "isso.",
+          "start": 119.98,
+          "end": 119.98,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "É,",
+          "start": 119.98,
+          "end": 120.16,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "e",
+          "start": 120.22,
+          "end": 120.32,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "as",
+          "start": 120.32,
+          "end": 120.4,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "minhas",
+          "start": 120.4,
+          "end": 120.68,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "comidas",
+          "start": 120.68,
+          "end": 121.06,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "de",
+          "start": 121.06,
+          "end": 121.3,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "inverno",
+          "start": 121.3,
+          "end": 121.74,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "favoritas.",
+          "start": 121.74,
+          "end": 122.42,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "Chocolate,",
+          "start": 122.6,
+          "end": 123.06,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        }
+      ]
+    },
+    {
+      "id": "6a9ebf0a-bfe9-4c9e-89f4-d8f1875d106e",
+      "start": 123.62,
+      "end": 127.1,
+      "speaker_id": "S0",
+      "words": [
+        {
+          "text": "bolinhos",
+          "start": 123.62,
+          "end": 124.18,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "e",
+          "start": 124.18,
+          "end": 124.44,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "suco",
+          "start": 124.44,
+          "end": 124.62,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "de",
+          "start": 124.62,
+          "end": 124.8,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "maçã.",
+          "start": 124.8,
+          "end": 125.26,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "Tudo",
+          "start": 125.56,
+          "end": 125.98,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "muito",
+          "start": 125.98,
+          "end": 126.4,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "quentinho.",
+          "start": 126.4,
+          "end": 127.1,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        }
+      ]
+    },
+    {
+      "id": "d9b72b88-8e7b-4ad8-97c6-d0221935ba28",
+      "start": 127.72,
+      "end": 130.74,
+      "speaker_id": "S0",
+      "words": [
+        {
+          "text": "Vire",
+          "start": 127.72,
+          "end": 128.06,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "à",
+          "start": 128.06,
+          "end": 128.48,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "direita,",
+          "start": 128.48,
+          "end": 128.9,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "à",
+          "start": 129.18,
+          "end": 129.3,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "frente.",
+          "start": 129.3,
+          "end": 129.56,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "Direita,",
+          "start": 129.78,
+          "end": 130.16,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "não",
+          "start": 130.26,
+          "end": 130.34,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "é,",
+          "start": 130.34,
+          "end": 130.44,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "Nátaly?",
+          "start": 130.5,
+          "end": 130.74,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        }
+      ]
+    },
+    {
+      "id": "e6b13f2b-1ab6-4266-b625-4dfbb4327f18",
+      "start": 131.24,
+      "end": 133,
+      "speaker_id": "S0",
+      "words": [
+        {
+          "text": "Acho",
+          "start": 131.24,
+          "end": 131.56,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "que,",
+          "start": 131.56,
+          "end": 131.68,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "na",
+          "start": 131.74,
+          "end": 131.76,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "verdade,",
+          "start": 131.76,
+          "end": 132.08,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "é",
+          "start": 132.14,
+          "end": 132.3,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "a",
+          "start": 132.3,
+          "end": 132.32,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "esquerda,",
+          "start": 132.32,
+          "end": 132.72,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "Fred.",
+          "start": 132.86,
+          "end": 133,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        }
+      ]
+    },
+    {
+      "id": "34c6a7ac-8f17-4353-b0a8-2c5bdba505d3",
+      "start": 133.44,
+      "end": 135.2,
+      "speaker_id": "S0",
+      "words": [
+        {
+          "text": "Mais",
+          "start": 133.44,
+          "end": 133.68,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "uma",
+          "start": 133.68,
+          "end": 133.94,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "direita,",
+          "start": 133.94,
+          "end": 134.46,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "à",
+          "start": 134.8,
+          "end": 134.9,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "frente.",
+          "start": 134.9,
+          "end": 135.2,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        }
+      ]
+    },
+    {
+      "id": "9d477bf1-a889-498e-a616-1be3509688be",
+      "start": 137.36,
+      "end": 152.98,
+      "speaker_id": "S0",
+      "words": [
+        {
+          "text": "Não",
+          "start": 137.36,
+          "end": 137.84,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "dá!",
+          "start": 137.84,
+          "end": 138.1,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "Não",
+          "start": 138.32,
+          "end": 138.46,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "tem",
+          "start": 138.46,
+          "end": 138.66,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "pra",
+          "start": 138.66,
+          "end": 138.86,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "onde",
+          "start": 138.86,
+          "end": 139,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "virar.",
+          "start": 139,
+          "end": 139.36,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "Acho",
+          "start": 139.6,
+          "end": 139.82,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "que",
+          "start": 139.82,
+          "end": 139.94,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "seu",
+          "start": 139.94,
+          "end": 140.08,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "navegador",
+          "start": 140.08,
+          "end": 140.58,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "teve",
+          "start": 140.58,
+          "end": 140.78,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "um",
+          "start": 140.78,
+          "end": 140.88,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "colapso",
+          "start": 140.88,
+          "end": 141.2,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "nervoso,",
+          "start": 141.2,
+          "end": 141.66,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "Fred.",
+          "start": 141.84,
+          "end": 142.02,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "Nem",
+          "start": 142.02,
+          "end": 142.92,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "vem,",
+          "start": 142.92,
+          "end": 143.22,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "tá?",
+          "start": 143.44,
+          "end": 143.52,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "Nátaly",
+          "start": 143.86,
+          "end": 144.14,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "é",
+          "start": 144.14,
+          "end": 144.3,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "um",
+          "start": 144.3,
+          "end": 144.36,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "sistema",
+          "start": 144.36,
+          "end": 144.62,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "de",
+          "start": 144.62,
+          "end": 144.8,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "posicionamento",
+          "start": 144.8,
+          "end": 145.38,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "global",
+          "start": 145.38,
+          "end": 145.7,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "de",
+          "start": 145.7,
+          "end": 145.92,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "última",
+          "start": 145.92,
+          "end": 146.1,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "geração.",
+          "start": 146.1,
+          "end": 146.72,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "Ele",
+          "start": 146.96,
+          "end": 147.12,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "nos",
+          "start": 147.12,
+          "end": 147.32,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "leva",
+          "start": 147.32,
+          "end": 147.56,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "a",
+          "start": 147.56,
+          "end": 147.74,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "15",
+          "start": 147.74,
+          "end": 148.02,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "centímetros",
+          "start": 148.02,
+          "end": 148.64,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "do",
+          "start": 148.64,
+          "end": 148.94,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "destino",
+          "start": 148.94,
+          "end": 149.36,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "programado.",
+          "start": 149.36,
+          "end": 150.14,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "A",
+          "start": 150.5,
+          "end": 150.62,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "esquerda",
+          "start": 150.62,
+          "end": 151.14,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "entra",
+          "start": 151.14,
+          "end": 151.66,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "no",
+          "start": 151.66,
+          "end": 151.86,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "fluxo",
+          "start": 151.86,
+          "end": 152.32,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "e",
+          "start": 152.32,
+          "end": 152.5,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "acelere.",
+          "start": 152.5,
+          "end": 152.98,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        }
+      ]
+    },
+    {
+      "id": "6e08aef1-c900-44f5-8250-15f2a89e4e55",
+      "start": 153.56,
+      "end": 157.2,
+      "speaker_id": "S0",
+      "words": [
+        {
+          "text": "Você",
+          "start": 153.56,
+          "end": 153.86,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "acaba",
+          "start": 153.86,
+          "end": 154.26,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "de",
+          "start": 154.26,
+          "end": 154.54,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "chegar",
+          "start": 154.54,
+          "end": 154.72,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "à",
+          "start": 154.72,
+          "end": 154.94,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "praia.",
+          "start": 154.94,
+          "end": 155.26,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "Aproveite",
+          "start": 155.6,
+          "end": 156.2,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "o",
+          "start": 156.2,
+          "end": 156.34,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "dia",
+          "start": 156.34,
+          "end": 156.56,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "no",
+          "start": 156.56,
+          "end": 156.72,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "litoral.",
+          "start": 156.72,
+          "end": 157.2,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        }
+      ]
+    },
+    {
+      "id": "0e66e81d-0b40-4087-aa52-e8c26aa3256d",
+      "start": 159.78,
+      "end": 162,
+      "speaker_id": "S0",
+      "words": [
+        {
+          "text": "Versão",
+          "start": 159.78,
+          "end": 160.38,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "brasileira,",
+          "start": 160.38,
+          "end": 160.98,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "Simne",
+          "start": 161.28,
+          "end": 161.64,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "Video.",
+          "start": 161.64,
+          "end": 162,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        }
+      ]
+    },
+    {
+      "id": "5277b9bd-aa95-4876-aba9-53363c70164e",
+      "start": 163.62,
+      "end": 164.22,
+      "speaker_id": "S0",
+      "words": [
+        {
+          "text": "Gente,",
+          "start": 163.62,
+          "end": 164.22,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        }
+      ]
+    },
+    {
+      "id": "74d9391f-cf5a-44a8-955c-2c586460eb00",
+      "start": 164.7,
+      "end": 167.02,
+      "speaker_id": "S0",
+      "words": [
+        {
+          "text": "tá",
+          "start": 164.7,
+          "end": 165.1,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "dando",
+          "start": 165.1,
+          "end": 165.34,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "na",
+          "start": 165.34,
+          "end": 165.48,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "televisão",
+          "start": 165.48,
+          "end": 165.96,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "sobre",
+          "start": 165.96,
+          "end": 166.18,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "a",
+          "start": 166.18,
+          "end": 166.28,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "competição.",
+          "start": 166.28,
+          "end": 166.9,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "Não.",
+          "start": 166.9,
+          "end": 167.02,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        }
+      ]
+    },
+    {
+      "id": "41ef43a4-5768-48cc-bfd6-d29314f1b2f6",
+      "start": 168.78,
+      "end": 176.96,
+      "speaker_id": "S0",
+      "words": [
+        {
+          "text": "E,",
+          "start": 168.78,
+          "end": 169.26,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "fazendo",
+          "start": 169.42,
+          "end": 169.58,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "o",
+          "start": 169.58,
+          "end": 169.76,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "seu",
+          "start": 169.76,
+          "end": 169.84,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "extrair",
+          "start": 169.84,
+          "end": 170.26,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "na",
+          "start": 170.26,
+          "end": 170.38,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "série",
+          "start": 170.38,
+          "end": 170.66,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "competições",
+          "start": 170.66,
+          "end": 171.24,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "de",
+          "start": 171.24,
+          "end": 171.4,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "Snowboard,",
+          "start": 171.4,
+          "end": 171.9,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "que",
+          "start": 171.96,
+          "end": 172.12,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "leva",
+          "start": 172.12,
+          "end": 172.28,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "o",
+          "start": 172.28,
+          "end": 172.46,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "seu",
+          "start": 172.46,
+          "end": 172.52,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "nome,",
+          "start": 172.52,
+          "end": 172.9,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "o",
+          "start": 173.28,
+          "end": 173.34,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "binominal",
+          "start": 173.34,
+          "end": 173.76,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "do",
+          "start": 173.76,
+          "end": 173.92,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "software,",
+          "start": 173.92,
+          "end": 174.56,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "Freeze",
+          "start": 174.88,
+          "end": 175.2,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "Wilkinson.",
+          "start": 175.2,
+          "end": 175.86,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "Senhor",
+          "start": 176.1,
+          "end": 176.32,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "Wilkinson.",
+          "start": 176.32,
+          "end": 176.96,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        }
+      ]
+    },
+    {
+      "id": "9802cd5a-cc62-4ec0-8c71-67ab46e27ef9",
+      "start": 180.14,
+      "end": 186.14,
+      "speaker_id": "S0",
+      "words": [
+        {
+          "text": "Ei,",
+          "start": 180.14,
+          "end": 180.62,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "parece",
+          "start": 180.94,
+          "end": 181.2,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "muito",
+          "start": 181.2,
+          "end": 181.62,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "com",
+          "start": 181.62,
+          "end": 181.82,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "a",
+          "start": 181.82,
+          "end": 181.9,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "máquina",
+          "start": 181.9,
+          "end": 182.08,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "de",
+          "start": 182.08,
+          "end": 182.28,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "mistério.",
+          "start": 182.28,
+          "end": 182.78,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "É",
+          "start": 183.14,
+          "end": 183.3,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "a",
+          "start": 183.3,
+          "end": 183.42,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "máquina",
+          "start": 183.42,
+          "end": 183.74,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "de",
+          "start": 183.74,
+          "end": 184.02,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "mistério.",
+          "start": 184.02,
+          "end": 184.8,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "Olha",
+          "start": 185.16,
+          "end": 185.36,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "a",
+          "start": 185.36,
+          "end": 185.56,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "pista,",
+          "start": 185.56,
+          "end": 185.76,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "Fred.",
+          "start": 186,
+          "end": 186.14,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        }
+      ]
+    },
+    {
+      "id": "170f71c1-560a-4eec-a9ad-b72d13defcb4",
+      "start": 194.44,
+      "end": 197.5,
+      "speaker_id": "S0",
+      "words": [
+        {
+          "text": "Uxá,",
+          "start": 194.44,
+          "end": 195.12,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "Fred,",
+          "start": 195.34,
+          "end": 195.7,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "você",
+          "start": 196.02,
+          "end": 196.22,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "é",
+          "start": 196.22,
+          "end": 196.34,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "um",
+          "start": 196.34,
+          "end": 196.44,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "bom",
+          "start": 196.44,
+          "end": 196.6,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "motorista.",
+          "start": 196.6,
+          "end": 197.5,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        }
+      ]
+    },
+    {
+      "id": "9e39425b-4624-4bfa-91d3-ee3d4faef556",
+      "start": 198.54,
+      "end": 202.02,
+      "speaker_id": "S0",
+      "words": [
+        {
+          "text": "Aberto",
+          "start": 198.54,
+          "end": 199.22,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "de",
+          "start": 199.22,
+          "end": 199.36,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "Snowboard",
+          "start": 199.36,
+          "end": 199.8,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "de",
+          "start": 199.8,
+          "end": 200.02,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "Wilkinson.",
+          "start": 200.02,
+          "end": 202.02,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        }
+      ]
+    },
+    {
+      "id": "18423679-b6cf-468d-9495-64a960612ca7",
+      "start": 205.42,
+      "end": 208.14,
+      "speaker_id": "S0",
+      "words": [
+        {
+          "text": "Ah,",
+          "start": 205.42,
+          "end": 206.1,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "o",
+          "start": 206.48,
+          "end": 206.64,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "ar",
+          "start": 206.64,
+          "end": 206.8,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "doce",
+          "start": 206.8,
+          "end": 207.2,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "das",
+          "start": 207.2,
+          "end": 207.4,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "montanhas.",
+          "start": 207.4,
+          "end": 208.14,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        }
+      ]
+    },
+    {
+      "id": "c7220837-f755-4a8a-99fe-45b1a87d7d0e",
+      "start": 208.54,
+      "end": 208.9,
+      "speaker_id": "S0",
+      "words": [
+        {
+          "text": "Ei,",
+          "start": 208.54,
+          "end": 208.9,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        }
+      ]
+    },
+    {
+      "id": "2bc2bfd4-88d1-4a13-af89-603a3c9f5c9d",
+      "start": 209.3,
+      "end": 217,
+      "speaker_id": "S0",
+      "words": [
+        {
+          "text": "você",
+          "start": 209.3,
+          "end": 209.56,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "é",
+          "start": 209.56,
+          "end": 209.68,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "gratimíler?",
+          "start": 209.68,
+          "end": 210.42,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "Vem",
+          "start": 210.66,
+          "end": 210.82,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "ganhando",
+          "start": 210.82,
+          "end": 211.04,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "todas",
+          "start": 211.04,
+          "end": 211.2,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "as",
+          "start": 211.2,
+          "end": 211.42,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "competições",
+          "start": 211.42,
+          "end": 211.84,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "europeias?",
+          "start": 211.84,
+          "end": 212.56,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "Deu",
+          "start": 212.92,
+          "end": 213.24,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "sorte.",
+          "start": 213.24,
+          "end": 213.8,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "Vai",
+          "start": 214.18,
+          "end": 214.32,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "me",
+          "start": 214.32,
+          "end": 214.44,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "ver",
+          "start": 214.44,
+          "end": 214.62,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "ganhar",
+          "start": 214.62,
+          "end": 215,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "aqui",
+          "start": 215,
+          "end": 215.36,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "também.",
+          "start": 215.36,
+          "end": 215.86,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "Tchau,",
+          "start": 216.12,
+          "end": 216.64,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "gato.",
+          "start": 216.88,
+          "end": 217,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        }
+      ]
+    },
+    {
+      "id": "59521ca0-d075-4894-a3c1-454ff3babce2",
+      "start": 218.58,
+      "end": 234.5,
+      "speaker_id": "S0",
+      "words": [
+        {
+          "text": "Mas",
+          "start": 218.58,
+          "end": 218.86,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "como",
+          "start": 218.86,
+          "end": 219.16,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "esses",
+          "start": 219.16,
+          "end": 219.44,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "jogos",
+          "start": 219.44,
+          "end": 219.74,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "de",
+          "start": 219.74,
+          "end": 219.92,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "profissionais",
+          "start": 219.92,
+          "end": 220.4,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "serão",
+          "start": 220.4,
+          "end": 220.7,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "afetados",
+          "start": 220.7,
+          "end": 221.2,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "com",
+          "start": 221.2,
+          "end": 221.34,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "a",
+          "start": 221.34,
+          "end": 221.4,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "contusão",
+          "start": 221.4,
+          "end": 221.78,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "do",
+          "start": 221.78,
+          "end": 221.9,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "canhador",
+          "start": 221.9,
+          "end": 222.22,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "do",
+          "start": 222.22,
+          "end": 222.42,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "bronze",
+          "start": 222.42,
+          "end": 222.64,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "olímpico,",
+          "start": 222.64,
+          "end": 223.08,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "Chris",
+          "start": 223.38,
+          "end": 223.4,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "Clug,",
+          "start": 223.4,
+          "end": 223.86,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "sob",
+          "start": 224.14,
+          "end": 224.36,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "misteriosas",
+          "start": 224.36,
+          "end": 225.1,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "circunstâncias?",
+          "start": 225.1,
+          "end": 226.02,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "Nancy,",
+          "start": 226.42,
+          "end": 226.84,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "com",
+          "start": 227,
+          "end": 227.2,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "um",
+          "start": 227.2,
+          "end": 227.4,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "milhão",
+          "start": 227.4,
+          "end": 227.68,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "de",
+          "start": 227.68,
+          "end": 227.86,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "dólares",
+          "start": 227.86,
+          "end": 228.22,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "em",
+          "start": 228.22,
+          "end": 228.52,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "jogo,",
+          "start": 228.52,
+          "end": 228.9,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "não",
+          "start": 229.06,
+          "end": 229.14,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "acha",
+          "start": 229.14,
+          "end": 229.44,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "que",
+          "start": 229.44,
+          "end": 229.66,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "os",
+          "start": 229.66,
+          "end": 229.78,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "competidores",
+          "start": 229.78,
+          "end": 230.32,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "estão",
+          "start": 230.32,
+          "end": 230.78,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "com",
+          "start": 230.78,
+          "end": 231,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "muita",
+          "start": 231,
+          "end": 231.36,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "fome",
+          "start": 231.36,
+          "end": 231.78,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "para",
+          "start": 231.78,
+          "end": 232.08,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "vencer?",
+          "start": 232.08,
+          "end": 232.56,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "Chris",
+          "start": 232.92,
+          "end": 233.22,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "Clug",
+          "start": 233.22,
+          "end": 233.72,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "contundido.",
+          "start": 233.72,
+          "end": 234.5,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        }
+      ]
+    },
+    {
+      "id": "9b6babad-ed05-4a64-b994-1fea8292f4e9",
+      "start": 235.1,
+      "end": 236.12,
+      "speaker_id": "S0",
+      "words": [
+        {
+          "text": "Misteriosas",
+          "start": 235.1,
+          "end": 235.7,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "circunstâncias?",
+          "start": 235.7,
+          "end": 236.12,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        }
+      ]
+    },
+    {
+      "id": "41684c06-c545-481d-a036-e25978cdfe17",
+      "start": 237.24,
+      "end": 238.48,
+      "speaker_id": "S0",
+      "words": [
+        {
+          "text": "Um",
+          "start": 237.24,
+          "end": 237.5,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "milhão",
+          "start": 237.5,
+          "end": 237.86,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "de",
+          "start": 237.86,
+          "end": 238.02,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "dólares?",
+          "start": 238.02,
+          "end": 238.48,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        }
+      ]
+    },
+    {
+      "id": "abca7f2e-790b-4d0f-a928-a6b227b95f86",
+      "start": 238.98,
+      "end": 239.48,
+      "speaker_id": "S0",
+      "words": [
+        {
+          "text": "Fome?",
+          "start": 238.98,
+          "end": 239.48,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        }
+      ]
+    },
+    {
+      "id": "bbc58d31-ac87-4414-aa7b-37db3c97ae4f",
+      "start": 240,
+      "end": 246.04,
+      "speaker_id": "S0",
+      "words": [
+        {
+          "text": "É",
+          "start": 240,
+          "end": 240.26,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "melhor",
+          "start": 240.26,
+          "end": 240.6,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "nós",
+          "start": 240.6,
+          "end": 240.94,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "termos",
+          "start": 240.94,
+          "end": 241.4,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "uma",
+          "start": 241.4,
+          "end": 241.54,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "conversinha",
+          "start": 241.54,
+          "end": 242.14,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "com",
+          "start": 242.14,
+          "end": 242.38,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "o",
+          "start": 242.38,
+          "end": 242.64,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "Chris",
+          "start": 242.64,
+          "end": 242.82,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "Clug.",
+          "start": 242.82,
+          "end": 243.28,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "Falar",
+          "start": 243.28,
+          "end": 243.74,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "com",
+          "start": 243.74,
+          "end": 243.94,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "Chris",
+          "start": 243.94,
+          "end": 244.28,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "Klug?",
+          "start": 244.28,
+          "end": 244.84,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "Que",
+          "start": 245.08,
+          "end": 245.42,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        },
+        {
+          "text": "maneiro?",
+          "start": 245.42,
+          "end": 246.04,
+          "weight": 500,
+          "size": 1.0750000000000002,
+          "emphasis": false
+        }
+      ]
+    }
+  ]
+}
