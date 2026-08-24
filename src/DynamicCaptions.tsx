@@ -1,5 +1,7 @@
 import React from "react";
 import { useCurrentFrame, useVideoConfig, interpolate, spring } from "remotion";
+import { loadFont } from "@remotion/google-fonts/NotoSans";
+const { fontFamily } = loadFont();
 
 export interface Word {
   text: string;
@@ -145,7 +147,7 @@ export const DynamicCaptions: React.FC<Props> = ({ captions = [], cast = [] }) =
             <span
               key={`${activeBlock.id || "b"}-${idx}`}
               style={{
-                fontFamily: "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+                fontFamily: `${fontFamily}, sans-serif`,
                 fontWeight: 600,
                 fontSize: `${44 * (w.size ?? 1.0)}px`,
                 lineHeight: 1.2,
