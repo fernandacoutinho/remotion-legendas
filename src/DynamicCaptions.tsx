@@ -26,6 +26,7 @@ export interface Word {
   pitch?: number;
   volume?: number;
   volumePercent?: number;
+  type?: "whisper" | "shout" | "normal" | string;
 }
 
 export interface CaptionBlock {
@@ -44,14 +45,88 @@ export interface CastMember {
   color: string;
 }
 
-interface Props {
+export interface DynamicCaptionsProps {
   captions?: CaptionBlock[] | any[];
   cast?: CastMember[] | any[];
+}
+
+// Une palavras entre colchetes em um único objeto de palavra para crescerem juntos sem sobreposição
+function processBracketGroups(words: Word[]): Word[] {
+  if (!words || words.length === 0) return [];
+
+  const result: Word[] = [];
+  let currentGroup: Word[] = [];
+  let inGroup = false;
+
+  for (let i = 0; i < words.length; i++) {
+    const word = words[i];
+    const text = word?.text || "";
+    const hasOpen = text.includes("[");
+    const hasClose = text.includes("]");
+
+    if (hasOpen && !inGroup) {
+      inGroup = true;
+      currentGroup = [{ ...word }];
+      
+      if (hasClose) {
+        // Ex: "[risos]" (abre e fecha na mesma palavra)
+        result.push(currentGroup[0]);
+        currentGroup = [];
+        inGroup = false;
+      }
+    } else if (inGroup) {
+      currentGroup.push({ ...word });
+
+      if (hasClose) {
+        inGroup = false;
+
+        // Une os textos com espaço e combina o tempo inicial do primeiro com o final do último
+        const mergedText = currentGroup.map((w) => w.text).join(" ");
+        const firstWord = currentGroup[0];
+        const lastWord = currentGroup[currentGroup.length - 1];
+
+        result.push({
+          ...firstWord,
+          text: mergedText,
+          start: firstWord.start,
+          end: lastWord.end,
+          type: firstWord.type || lastWord.type,
+        });
+
+        currentGroup = [];
+      }
+    } else {
+      result.push({ ...word });
+    }
+  }
+
+  // Garante o fechamento em caso de colchetes sem fechar no JSON
+  if (currentGroup.length > 0) {
+    const mergedText = currentGroup.map((w) => w.text).join(" ");
+    const firstWord = currentGroup[0];
+    const lastWord = currentGroup[currentGroup.length - 1];
+
+    result.push({
+      ...firstWord,
+      text: mergedText,
+      start: firstWord.start,
+      end: lastWord.end,
+    });
+  }
+
+  return result;
 }
 
 // Auxiliares de cálculo físico
 function clamp(val: number, min: number, max: number): number {
   return Math.min(Math.max(val, min), max);
+}
+
+function isShoutWord(word: Word): boolean {
+  if (word.type === "shout") return true;
+  if (typeof word.volumePercent === "number" && word.volumePercent >= 80) return true;
+  if (typeof word.weight === "number" && word.weight >= 800) return true;
+  return false;
 }
 
 function volumeScaleForWord(word: Word): number {
@@ -77,10 +152,16 @@ function aeWordMotionState(
   word: Word,
   time: number,
   fps: number,
-  fontSize: number
+  fontSize: number,
+  frame: number
 ) {
   const idle = { transform: "", spoken: false, active: false, anticipating: false };
-  if (!cue || (cue.type !== "dialogue" && cue.type !== "music") || !word) return idle;
+  if (
+    !cue ||
+    (cue.type !== "dialogue" && cue.type !== "music" && cue.type !== "sfx" && cue.type !== "sound") ||
+    !word
+  )
+    return idle;
 
   const start = Number(word.start);
   const end = Number(word.end);
@@ -102,9 +183,26 @@ function aeWordMotionState(
     yEm = CWI_AE_ANTICIPATION_DIP_EM * Math.sin(Math.PI * progress);
   }
 
+  // --- Efeito de Tremor do Grito ---
+  let translateX = 0;
+  let translateY = yEm * fontSize;
+
+  const shout = isShoutWord(word);
+  if (shout && active) {
+    translateX += Math.sin(frame * 2.5) * 2.2;
+    translateY += Math.cos(frame * 3.1) * 2.2;
+  }
+
   const transforms: string[] = [];
-  if (yEm) transforms.push(`translateY(${(yEm * fontSize).toFixed(2)}px)`);
-  if (scale !== 1) transforms.push(`scale(${scale.toFixed(3)})`);
+  if (translateX !== 0 || translateY !== 0) {
+    transforms.push(`translate(${translateX.toFixed(2)}px, ${translateY.toFixed(2)}px)`);
+  } else if (yEm !== 0) {
+    transforms.push(`translateY(${translateY.toFixed(2)}px)`);
+  }
+
+  if (scale !== 1) {
+    transforms.push(`scale(${scale.toFixed(3)})`);
+  }
 
   return {
     transform: transforms.join(" "),
@@ -114,7 +212,7 @@ function aeWordMotionState(
   };
 }
 
-export const DynamicCaptions: React.FC<Props> = ({ captions = [], cast = [] }) => {
+export const DynamicCaptions: React.FC<DynamicCaptionsProps> = ({ captions = [], cast = [] }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const currentTime = frame / Math.max(1, fps);
@@ -133,6 +231,9 @@ export const DynamicCaptions: React.FC<Props> = ({ captions = [], cast = [] }) =
   if (!activeBlock || !Array.isArray(activeBlock.words) || activeBlock.words.length === 0) {
     return null;
   }
+
+  // Junta automaticamente termos entre colchetes em um único item para animação unificada
+  const processedWords = processBracketGroups(activeBlock.words);
 
   // Identificação do tipo de áudio
   const blockType = activeBlock.type || "dialogue";
@@ -168,8 +269,6 @@ export const DynamicCaptions: React.FC<Props> = ({ captions = [], cast = [] }) =
       <div
         style={{
           backgroundColor: "rgba(10, 10, 10, 1)",
-          backdropFilter: "blur(4px)",
-          WebkitBackdropFilter: "blur(5px)",
           padding: "0px 5px",
           display: "flex",
           justifyContent: "center",
@@ -178,9 +277,10 @@ export const DynamicCaptions: React.FC<Props> = ({ captions = [], cast = [] }) =
           columnGap: "12px",
           rowGap: "8px",
           maxWidth: "88%",
-          border: isSFX 
-            ? "1px dashed rgba(255, 255, 255, 0.4)" 
+          border: isSFX
+            ? "1px dashed rgba(255, 255, 255, 0.4)"
             : "1px solid rgba(255, 255, 255, 0.08)",
+          boxShadow: "none",
         }}
       >
         {isMusic && (
@@ -189,23 +289,26 @@ export const DynamicCaptions: React.FC<Props> = ({ captions = [], cast = [] }) =
           </span>
         )}
 
-        {activeBlock.words.map((w: Word, idx: number) => {
+        {processedWords.map((w: Word, idx: number) => {
           if (!w || !w.text) return null;
 
           const fontSize = 44 * (w.size ?? 1.0);
-          const motion = aeWordMotionState(normalizedCue, w, currentTime, fps, fontSize);
+          const motion = aeWordMotionState(normalizedCue, w, currentTime, fps, fontSize, frame);
 
           let wordColor = motion.spoken ? speakerColor : "#FFFFFF";
           if (isSFX) {
             wordColor = "#FFD700";
           }
 
+          const shout = isShoutWord(w);
+          const fontWeight = shout && motion.active ? 900 : 600;
+
           return (
             <span
               key={`${activeBlock.id || "b"}-${idx}`}
               style={{
                 fontFamily: `${fontFamily}, sans-serif`,
-                fontWeight: 600,
+                fontWeight,
                 fontStyle: "normal",
                 fontSize: `${fontSize}px`,
                 lineHeight: 1.2,
@@ -215,6 +318,7 @@ export const DynamicCaptions: React.FC<Props> = ({ captions = [], cast = [] }) =
                 transformOrigin: "center center",
                 letterSpacing: "-0.015em",
                 textShadow: "none",
+                filter: "none",
                 textTransform: "none",
                 willChange: "transform, color",
               }}
