@@ -10,6 +10,7 @@ const { fontFamily } = loadFont("normal", {
 const CWI_AE_ANTICIPATION_FRAMES = 3;
 const CWI_AE_WORD_LIFT_EM = 0.20;
 const CWI_AE_ANTICIPATION_DIP_EM = 0.05;
+const DECAY_DURATION = 0.25;
 
 const FALLBACK_COLORS: Record<string, string> = {
   S0: "#27AE60",
@@ -133,17 +134,17 @@ function isWhisperWord(word: Word): boolean {
 
 function volumeScaleForWord(word: Word): number {
   if (!word) return 1.15;
-  if (isShoutWord(word)) return 1.25;
+  if (isShoutWord(word)) return 1.15;
   if (isWhisperWord(word)) return 1.03;
 
   if (typeof word.volumePercent === "number") {
-    return 1 + ((clamp(word.volumePercent, 0, 100) - 50) / 100) * 0.35;
+    return Math.min(1.15, 1 + ((clamp(word.volumePercent, 0, 100) - 50) / 100) * 0.15);
   }
   if (typeof word.emphasis === "number") {
-    return 1 + clamp(word.emphasis, 0, 1) * 0.25;
+    return Math.min(1.15, 1 + clamp(word.emphasis, 0, 1) * 0.15);
   }
   if (typeof word.emphasis === "boolean") {
-    return word.emphasis ? 1.25 : 1.0;
+    return word.emphasis ? 1.15 : 1.0;
   }
   return 1.15;
 }
@@ -175,22 +176,37 @@ function aeWordMotionState(
   let yEm = 0;
   let scale = 1;
 
+  const shout = isShoutWord(word);
+  const isEmphasized = shout || Boolean(word.emphasis);
+
   if (active) {
     const progress = clamp((time - start) / (end - start), 0, 1);
     yEm = -CWI_AE_WORD_LIFT_EM * Math.sin(Math.PI * progress);
 
     const whisper = isWhisperWord(word);
-    const whisperScale = whisper ? 1.05 : 1.0;
+    const whisperScale = whisper ? 1.03 : 1.0;
     const wordBaseSize = word.size ?? 1.0;
     const volScale = volumeScaleForWord(word);
 
-    const maxScale = wordBaseSize * whisperScale * volScale;
+    const maxScale = Math.min(1.15, wordBaseSize * whisperScale * volScale);
 
-    // Transição suave de 150ms no crescimento da escala
     const scaleEase = clamp((time - start) / 0.15, 0, 1);
     const smoothRamp = scaleEase * scaleEase * (3 - 2 * scaleEase);
 
-    scale = 1 + (maxScale - 1) * Math.sin(Math.PI * progress) * smoothRamp;
+    if (isEmphasized) {
+      scale = 1 + (maxScale - 1) * smoothRamp;
+    } else {
+      scale = 1 + (maxScale - 1) * Math.sin(Math.PI * progress) * smoothRamp;
+    }
+  } else if (isEmphasized && spoken && time > end && time <= end + DECAY_DURATION) {
+    const wordBaseSize = word.size ?? 1.0;
+    const volScale = volumeScaleForWord(word);
+    const maxScale = Math.min(1.15, wordBaseSize * volScale);
+
+    const decayProgress = clamp((time - end) / DECAY_DURATION, 0, 1);
+    const smoothDecay = 1 - (decayProgress * decayProgress * (3 - 2 * decayProgress));
+
+    scale = 1 + (maxScale - 1) * smoothDecay;
   } else if (anticipating) {
     const progress = clamp((time - (start - anticipationSeconds)) / anticipationSeconds, 0, 1);
     yEm = CWI_AE_ANTICIPATION_DIP_EM * Math.sin(Math.PI * progress);
@@ -199,7 +215,6 @@ function aeWordMotionState(
   let translateX = 0;
   let translateY = yEm * fontSize;
 
-  const shout = isShoutWord(word);
   if (shout && active) {
     translateX += Math.sin(frame * 2.5) * 1.8;
     translateY += Math.cos(frame * 2.8) * 1.8;
@@ -286,7 +301,7 @@ export const DynamicCaptions: React.FC<DynamicCaptionsProps> = ({ captions = [],
           alignItems: "center",
           flexWrap: "wrap",
           columnGap: "12px",
-          rowGap: "8px",
+          rowGap: "8px",  
           maxWidth: "88%",
           overflow: "visible",
           border: isSFX
@@ -305,19 +320,18 @@ export const DynamicCaptions: React.FC<DynamicCaptionsProps> = ({ captions = [],
 
           const shout = isShoutWord(w);
           const whisper = isWhisperWord(w);
+          const isEmphasized = shout || Boolean(w.emphasis);
 
           const fontSize = BASE_FONT_SIZE;
           const motion = aeWordMotionState(normalizedCue, w, currentTime, fps, fontSize, frame);
 
           const isBracketText = w.text.includes("[") || w.text.includes("]");
 
-          // Cor padrão (branca) até a palavra ser dita
           let wordColor = "#FFFFFF";
           if (motion.spoken && !isBracketText) {
             wordColor = speakerColor;
           }
 
-          // Transição suave do peso da fonte ao longo de 150ms
           let targetWeight = DEFAULT_FONT_WEIGHT;
           if (shout) {
             targetWeight = 900;
@@ -328,35 +342,77 @@ export const DynamicCaptions: React.FC<DynamicCaptionsProps> = ({ captions = [],
           }
 
           let fontWeight = DEFAULT_FONT_WEIGHT;
-          if (currentTime >= w.start) {
+
+          if (currentTime >= w.start && currentTime <= w.end) {
             const weightProgress = clamp((currentTime - w.start) / 0.15, 0, 1);
             fontWeight = Math.round(
               DEFAULT_FONT_WEIGHT + (targetWeight - DEFAULT_FONT_WEIGHT) * weightProgress
             );
+          } else if (currentTime > w.end) {
+            if (isEmphasized) {
+              const decayProgress = clamp((currentTime - w.end) / DECAY_DURATION, 0, 1);
+              const smoothDecay = 1 - (decayProgress * decayProgress * (3 - 2 * decayProgress));
+              fontWeight = Math.round(
+                DEFAULT_FONT_WEIGHT + (targetWeight - DEFAULT_FONT_WEIGHT) * smoothDecay
+              );
+            } else {
+              fontWeight = targetWeight;
+            }
           }
+
+          const reservedWeight = Math.max(DEFAULT_FONT_WEIGHT, targetWeight);
+          const letterSpacing = whisper ? "0.03em" : "-0.015em";
 
           return (
             <span
               key={`${activeBlock.id || "b"}-${idx}`}
               style={{
-                fontFamily: `${fontFamily}, sans-serif`,
-                fontWeight,
-                fontStyle: "normal",
-                fontSize: `${fontSize}px`,
-                lineHeight: 1.2,
-                color: wordColor,
-                display: "inline-block",
+                display: "inline-grid",
+                alignItems: "center",
+                justifyItems: "center",
                 position: "relative",
-                zIndex: motion.active ? 10 : motion.anticipating ? 5 : 1,
-                transform: motion.transform,
-                transformOrigin: "center center",
-                letterSpacing: whisper ? "0.03em" : "-0.015em",
-                textShadow: "none",
-                textTransform: "none",
-                willChange: "transform, color",
               }}
             >
-              {w.text}
+              <span
+                aria-hidden="true"
+                style={{
+                  gridArea: "1 / 1",
+                  fontFamily: `${fontFamily}, sans-serif`,
+                  fontWeight: reservedWeight,
+                  fontSize: `${fontSize}px`,
+                  lineHeight: 1.2,
+                  letterSpacing,
+                  visibility: "hidden",
+                  pointerEvents: "none",
+                  whiteSpace: "pre",
+                }}
+              >
+                {w.text}
+              </span>
+
+              <span
+                style={{
+                  gridArea: "1 / 1",
+                  fontFamily: `${fontFamily}, sans-serif`,
+                  fontWeight,
+                  fontStyle: "normal",
+                  fontSize: `${fontSize}px`,
+                  lineHeight: 1.2,
+                  color: wordColor,
+                  display: "inline-block",
+                  position: "relative",
+                  zIndex: motion.active ? 10 : motion.anticipating ? 5 : 1,
+                  transform: motion.transform,
+                  transformOrigin: "center center",
+                  letterSpacing,
+                  textShadow: "none",
+                  textTransform: "none",
+                  willChange: "transform, color",
+                  whiteSpace: "pre",
+                }}
+              >
+                {w.text}
+              </span>
             </span>
           );
         })}
