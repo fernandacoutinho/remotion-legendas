@@ -4,7 +4,7 @@ import { loadFont } from "@remotion/google-fonts/NotoSans";
 
 const { fontFamily } = loadFont();
 
-// Configurações de Física da Animação (After Effects Motion)
+// Configurações de Física (Manuseio After Effects)
 const CWI_AE_ANTICIPATION_FRAMES = 3;
 const CWI_AE_WORD_LIFT_EM = 0.20;
 const CWI_AE_ANTICIPATION_DIP_EM = 0.05;
@@ -50,7 +50,6 @@ export interface DynamicCaptionsProps {
   cast?: CastMember[] | any[];
 }
 
-// Une palavras entre colchetes em um único objeto de palavra para crescerem juntos sem sobreposição
 function processBracketGroups(words: Word[]): Word[] {
   if (!words || words.length === 0) return [];
 
@@ -69,7 +68,6 @@ function processBracketGroups(words: Word[]): Word[] {
       currentGroup = [{ ...word }];
       
       if (hasClose) {
-        // Ex: "[risos]" (abre e fecha na mesma palavra)
         result.push(currentGroup[0]);
         currentGroup = [];
         inGroup = false;
@@ -79,8 +77,6 @@ function processBracketGroups(words: Word[]): Word[] {
 
       if (hasClose) {
         inGroup = false;
-
-        // Une os textos com espaço e combina o tempo inicial do primeiro com o final do último
         const mergedText = currentGroup.map((w) => w.text).join(" ");
         const firstWord = currentGroup[0];
         const lastWord = currentGroup[currentGroup.length - 1];
@@ -100,7 +96,6 @@ function processBracketGroups(words: Word[]): Word[] {
     }
   }
 
-  // Garante o fechamento em caso de colchetes sem fechar no JSON
   if (currentGroup.length > 0) {
     const mergedText = currentGroup.map((w) => w.text).join(" ");
     const firstWord = currentGroup[0];
@@ -117,7 +112,6 @@ function processBracketGroups(words: Word[]): Word[] {
   return result;
 }
 
-// Auxiliares de cálculo físico
 function clamp(val: number, min: number, max: number): number {
   return Math.min(Math.max(val, min), max);
 }
@@ -129,22 +123,27 @@ function isShoutWord(word: Word): boolean {
   return false;
 }
 
-function volumeScaleForWord(word: Word): number {
-  if (!word) return 1;
-  if (typeof word.volumePercent === "number") {
-    return 1 + ((word.volumePercent - 50) / 100) * 0.35;
-  }
-  if (typeof word.emphasis === "number") {
-    return 1 + word.emphasis * 0.25;
-  }
-  if (typeof word.emphasis === "boolean") {
-    return word.emphasis ? 1.225 : 1.0;
-  }
-  return 1.15;
+function isWhisperWord(word: Word): boolean {
+  if (word.type === "whisper") return true;
+  if (typeof word.volumePercent === "number" && word.volumePercent > 0 && word.volumePercent <= 30) return true;
+  return false;
 }
 
-function activeWordScaleEnvelope(progress: number): number {
-  return Math.sin(Math.PI * progress);
+function volumeScaleForWord(word: Word): number {
+  if (!word) return 1.15;
+  if (isShoutWord(word)) return 1.25;
+  if (isWhisperWord(word)) return 1.03;
+
+  if (typeof word.volumePercent === "number") {
+    return 1 + ((clamp(word.volumePercent, 0, 100) - 50) / 100) * 0.35;
+  }
+  if (typeof word.emphasis === "number") {
+    return 1 + clamp(word.emphasis, 0, 1) * 0.25;
+  }
+  if (typeof word.emphasis === "boolean") {
+    return word.emphasis ? 1.25 : 1.0;
+  }
+  return 1.15;
 }
 
 function aeWordMotionState(
@@ -177,29 +176,32 @@ function aeWordMotionState(
   if (active) {
     const progress = clamp((time - start) / (end - start), 0, 1);
     yEm = -CWI_AE_WORD_LIFT_EM * Math.sin(Math.PI * progress);
-    scale = 1 + (volumeScaleForWord(word) - 1) * activeWordScaleEnvelope(progress);
+
+    const whisper = isWhisperWord(word);
+    const whisperScale = whisper ? 0.75 : 1.0;
+    const wordBaseSize = word.size ?? 1.0;
+    const volScale = volumeScaleForWord(word);
+
+    const maxScale = wordBaseSize * whisperScale * volScale;
+    scale = 1 + (maxScale - 1) * Math.sin(Math.PI * progress);
   } else if (anticipating) {
     const progress = clamp((time - (start - anticipationSeconds)) / anticipationSeconds, 0, 1);
     yEm = CWI_AE_ANTICIPATION_DIP_EM * Math.sin(Math.PI * progress);
   }
 
-  // --- Efeito de Tremor do Grito ---
   let translateX = 0;
   let translateY = yEm * fontSize;
 
   const shout = isShoutWord(word);
   if (shout && active) {
-    translateX += Math.sin(frame * 2.5) * 2.2;
-    translateY += Math.cos(frame * 3.1) * 2.2;
+    translateX += Math.sin(frame * 2.5) * 1.8;
+    translateY += Math.cos(frame * 2.8) * 1.8;
   }
 
   const transforms: string[] = [];
   if (translateX !== 0 || translateY !== 0) {
     transforms.push(`translate(${translateX.toFixed(2)}px, ${translateY.toFixed(2)}px)`);
-  } else if (yEm !== 0) {
-    transforms.push(`translateY(${translateY.toFixed(2)}px)`);
   }
-
   if (scale !== 1) {
     transforms.push(`scale(${scale.toFixed(3)})`);
   }
@@ -217,12 +219,10 @@ export const DynamicCaptions: React.FC<DynamicCaptionsProps> = ({ captions = [],
   const { fps } = useVideoConfig();
   const currentTime = frame / Math.max(1, fps);
 
-  // 1. Verificação de segurança da lista
   if (!Array.isArray(captions) || captions.length === 0) {
     return null;
   }
 
-  // 2. Localiza o bloco ativo
   const activeBlock = captions.find((c: any) => {
     if (!c || typeof c.start !== "number" || typeof c.end !== "number") return false;
     return currentTime >= c.start && currentTime <= c.end + 0.15;
@@ -232,15 +232,12 @@ export const DynamicCaptions: React.FC<DynamicCaptionsProps> = ({ captions = [],
     return null;
   }
 
-  // Junta automaticamente termos entre colchetes em um único item para animação unificada
   const processedWords = processBracketGroups(activeBlock.words);
 
-  // Identificação do tipo de áudio
   const blockType = activeBlock.type || "dialogue";
   const isMusic = blockType === "music";
   const isSFX = blockType === "sfx" || blockType === "sound";
 
-  // Cor do orador
   const speakerId = activeBlock.speaker_id || activeBlock.speakerId || "S0";
   const speakerFromCast = Array.isArray(cast) ? cast.find((s: any) => s && s.id === speakerId) : null;
   const speakerColor = speakerFromCast?.color || FALLBACK_COLORS[speakerId] || "#27AE60";
@@ -249,6 +246,9 @@ export const DynamicCaptions: React.FC<DynamicCaptionsProps> = ({ captions = [],
     ...activeBlock,
     type: blockType,
   };
+
+  const BASE_FONT_SIZE = 44;
+  const DEFAULT_FONT_WEIGHT = 600;
 
   return (
     <div
@@ -269,6 +269,8 @@ export const DynamicCaptions: React.FC<DynamicCaptionsProps> = ({ captions = [],
       <div
         style={{
           backgroundColor: "rgba(10, 10, 10, 1)",
+          backdropFilter: "blur(4px)",
+          WebkitBackdropFilter: "blur(5px)",
           padding: "0px 5px",
           display: "flex",
           justifyContent: "center",
@@ -277,10 +279,10 @@ export const DynamicCaptions: React.FC<DynamicCaptionsProps> = ({ captions = [],
           columnGap: "12px",
           rowGap: "8px",
           maxWidth: "88%",
+          overflow: "visible",
           border: isSFX
             ? "1px dashed rgba(255, 255, 255, 0.4)"
             : "1px solid rgba(255, 255, 255, 0.08)",
-          boxShadow: "none",
         }}
       >
         {isMusic && (
@@ -292,16 +294,31 @@ export const DynamicCaptions: React.FC<DynamicCaptionsProps> = ({ captions = [],
         {processedWords.map((w: Word, idx: number) => {
           if (!w || !w.text) return null;
 
-          const fontSize = 44 * (w.size ?? 1.0);
+          const shout = isShoutWord(w);
+          const whisper = isWhisperWord(w);
+
+          const fontSize = BASE_FONT_SIZE;
           const motion = aeWordMotionState(normalizedCue, w, currentTime, fps, fontSize, frame);
 
+          // Verifica se o texto é uma expressão entre colchetes (ex: "[moedinhas]")
+          const isBracketText = w.text.includes("[") || w.text.includes("]");
+
+          // LÓGICA DA COR:
+          // Se for colchete -> FICA SEMPRE BRANCO (#FFFFFF)
+          // Se for fala normal -> Muda para a cor do speaker quando falado
           let wordColor = motion.spoken ? speakerColor : "#FFFFFF";
-          if (isSFX) {
-            wordColor = "#FFD700";
+          if (isBracketText) {
+            wordColor = "#FFFFFF";
           }
 
-          const shout = isShoutWord(w);
-          const fontWeight = shout && motion.active ? 900 : 600;
+          let fontWeight = DEFAULT_FONT_WEIGHT;
+          if (shout) {
+            fontWeight = 900;
+          } else if (whisper) {
+            fontWeight = 400;
+          } else if (typeof w.weight === "number") {
+            fontWeight = w.weight;
+          }
 
           return (
             <span
@@ -309,16 +326,17 @@ export const DynamicCaptions: React.FC<DynamicCaptionsProps> = ({ captions = [],
               style={{
                 fontFamily: `${fontFamily}, sans-serif`,
                 fontWeight,
-                fontStyle: "normal",
+                fontStyle: whisper ? "italic" : "normal",
                 fontSize: `${fontSize}px`,
                 lineHeight: 1.2,
                 color: wordColor,
                 display: "inline-block",
+                position: "relative",
+                zIndex: motion.active ? 10 : motion.anticipating ? 5 : 1,
                 transform: motion.transform,
                 transformOrigin: "center center",
-                letterSpacing: "-0.015em",
+                letterSpacing: whisper ? "0.03em" : "-0.015em",
                 textShadow: "none",
-                filter: "none",
                 textTransform: "none",
                 willChange: "transform, color",
               }}
