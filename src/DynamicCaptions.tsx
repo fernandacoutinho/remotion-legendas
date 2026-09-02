@@ -4,7 +4,6 @@ import { loadFont } from "@remotion/google-fonts/NotoSans";
 
 const { fontFamily } = loadFont();
 
-// Configurações de Física (Manuseio After Effects)
 const CWI_AE_ANTICIPATION_FRAMES = 3;
 const CWI_AE_WORD_LIFT_EM = 0.20;
 const CWI_AE_ANTICIPATION_DIP_EM = 0.05;
@@ -16,6 +15,7 @@ const FALLBACK_COLORS: Record<string, string> = {
   S3: "#00C2FF",
 };
 
+// estrutura de uma palavra individual dentro de um bloco de legenda
 export interface Word {
   text: string;
   start: number;
@@ -29,6 +29,7 @@ export interface Word {
   type?: "whisper" | "shout" | "normal" | string;
 }
 
+// estrutura de um bloco de legenda, que contém várias palavras
 export interface CaptionBlock {
   id: string;
   start: number;
@@ -39,30 +40,37 @@ export interface CaptionBlock {
   words: Word[];
 }
 
+// locutor 
 export interface CastMember {
   id: string;
   name: string;
   color: string;
 }
 
+// props do componente DynamicCaptions
 export interface DynamicCaptionsProps {
   captions?: CaptionBlock[] | any[];
   cast?: CastMember[] | any[];
 }
 
+// função para processar grupos de palavras entre colchetes
 function processBracketGroups(words: Word[]): Word[] {
+
+  // se não houver palavras, retorna um array vazio
   if (!words || words.length === 0) return [];
 
   const result: Word[] = [];
   let currentGroup: Word[] = [];
   let inGroup = false;
 
+  // percorre cada palavra e agrupa as que estão entre colchetes
   for (let i = 0; i < words.length; i++) {
     const word = words[i];
     const text = word?.text || "";
     const hasOpen = text.includes("[");
     const hasClose = text.includes("]");
 
+    // se encontrar uma palavra com colchete de abertura e não estiver em um grupo, inicia um novo grupo
     if (hasOpen && !inGroup) {
       inGroup = true;
       currentGroup = [{ ...word }];
@@ -96,6 +104,7 @@ function processBracketGroups(words: Word[]): Word[] {
     }
   }
 
+  // se ainda houver um grupo em aberto, mescla as palavras restantes
   if (currentGroup.length > 0) {
     const mergedText = currentGroup.map((w) => w.text).join(" ");
     const firstWord = currentGroup[0];
@@ -112,10 +121,12 @@ function processBracketGroups(words: Word[]): Word[] {
   return result;
 }
 
+// função para limitar um valor entre um mínimo e um máximo
 function clamp(val: number, min: number, max: number): number {
   return Math.min(Math.max(val, min), max);
 }
 
+// função para determinar se uma palavra é um grito
 function isShoutWord(word: Word): boolean {
   if (word.type === "shout") return true;
   if (typeof word.volumePercent === "number" && word.volumePercent >= 80) return true;
@@ -123,12 +134,14 @@ function isShoutWord(word: Word): boolean {
   return false;
 }
 
+// função para determinar se uma palavra é um sussurro
 function isWhisperWord(word: Word): boolean {
   if (word.type === "whisper") return true;
   if (typeof word.volumePercent === "number" && word.volumePercent > 0 && word.volumePercent <= 30) return true;
   return false;
 }
 
+// função para calcular a escala de volume de uma palavra com base em suas propriedades
 function volumeScaleForWord(word: Word): number {
   if (!word) return 1.15;
   if (isShoutWord(word)) return 1.25;
@@ -146,6 +159,7 @@ function volumeScaleForWord(word: Word): number {
   return 1.15;
 }
 
+// função para calcular o estado de movimento de uma palavra com base no tempo atual e nas propriedades da palavra
 function aeWordMotionState(
   cue: any,
   word: Word,
@@ -154,6 +168,7 @@ function aeWordMotionState(
   fontSize: number,
   frame: number
 ) {
+  // estado padrão para palavras inativas
   const idle = { transform: "", spoken: false, active: false, anticipating: false };
   if (
     !cue ||
@@ -162,10 +177,12 @@ function aeWordMotionState(
   )
     return idle;
 
+  // obtém os tempos de início e fim da palavra
   const start = Number(word.start);
   const end = Number(word.end);
   if (!Number.isFinite(start)) return idle;
 
+  // calcula o tempo de antecipação em segundos com base na taxa de quadros
   const anticipationSeconds = CWI_AE_ANTICIPATION_FRAMES / Math.max(1, fps);
   const spoken = time >= start;
   const active = Number.isFinite(end) && end > start && time >= start && time <= end;
@@ -173,6 +190,7 @@ function aeWordMotionState(
   let yEm = 0;
   let scale = 1;
 
+  // se a palavra estiver ativa, calcula o progresso da animação e aplica efeitos de elevação e escala
   if (active) {
     const progress = clamp((time - start) / (end - start), 0, 1);
     yEm = -CWI_AE_WORD_LIFT_EM * Math.sin(Math.PI * progress);
@@ -214,6 +232,7 @@ function aeWordMotionState(
   };
 }
 
+// componente principal para renderizar legendas dinâmicas
 export const DynamicCaptions: React.FC<DynamicCaptionsProps> = ({ captions = [], cast = [] }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
@@ -251,6 +270,7 @@ export const DynamicCaptions: React.FC<DynamicCaptionsProps> = ({ captions = [],
   const DEFAULT_FONT_WEIGHT = 600;
 
   return (
+    // contêiner principal para as legendas, posicionado na parte inferior da tela
     <div
       style={{
         position: "absolute",
@@ -266,6 +286,7 @@ export const DynamicCaptions: React.FC<DynamicCaptionsProps> = ({ captions = [],
         padding: "0 40px",
       }}
     >
+      // contêiner interno para as palavras, com estilo de fundo e layout flexível
       <div
         style={{
           backgroundColor: "rgba(10, 10, 10, 1)",
@@ -300,12 +321,8 @@ export const DynamicCaptions: React.FC<DynamicCaptionsProps> = ({ captions = [],
           const fontSize = BASE_FONT_SIZE;
           const motion = aeWordMotionState(normalizedCue, w, currentTime, fps, fontSize, frame);
 
-          // Verifica se o texto é uma expressão entre colchetes (ex: "[moedinhas]")
           const isBracketText = w.text.includes("[") || w.text.includes("]");
 
-          // LÓGICA DA COR:
-          // Se for colchete -> FICA SEMPRE BRANCO (#FFFFFF)
-          // Se for fala normal -> Muda para a cor do speaker quando falado
           let wordColor = motion.spoken ? speakerColor : "#FFFFFF";
           if (isBracketText) {
             wordColor = "#FFFFFF";
@@ -320,6 +337,7 @@ export const DynamicCaptions: React.FC<DynamicCaptionsProps> = ({ captions = [],
             fontWeight = w.weight;
           }
 
+          // renderiza cada palavra como um elemento <span> com estilos dinâmicos baseados no estado de movimento e nas propriedades da palavra
           return (
             <span
               key={`${activeBlock.id || "b"}-${idx}`}
