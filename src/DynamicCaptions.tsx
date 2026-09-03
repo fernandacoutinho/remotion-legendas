@@ -1,5 +1,5 @@
 import React from "react";
-import { useCurrentFrame, useVideoConfig } from "remotion";
+import { spring, useCurrentFrame, useVideoConfig } from "remotion";
 import { loadFont } from "@remotion/google-fonts/NotoSans";
 
 const { fontFamily } = loadFont("normal", {
@@ -148,8 +148,19 @@ function volumeScaleForWord(word: Word): number {
   return 1.15;
 }
 
-function activeWordScaleEnvelope(progress: number): number {
-  return Math.sin(Math.PI * progress);
+function activeWordScaleEnvelope(progress: number, durationSec: number = 0.3): number {
+  const stiffness = 180;
+  const damping = 12;
+  const mass = 0.8;
+
+  const omega = Math.sqrt(stiffness / mass);
+  const alpha = damping / (2 * mass);
+
+  const t = progress * Math.max(0.15, durationSec);
+  const springFactor = Math.exp(-alpha * t) * Math.cos(omega * t);
+
+  const baseSine = Math.sin(Math.PI * progress);
+  return clamp(baseSine * (1 + 0.25 * (1 - springFactor)), 0, 1.35);
 }
 
 function aeWordMotionState(
@@ -180,9 +191,24 @@ function aeWordMotionState(
   let scale = 1;
 
   if (active) {
-    const progress = clamp((time - start) / (end - start), 0, 1);
-    yEm = -CWI_AE_WORD_LIFT_EM * Math.sin(Math.PI * progress);
-    scale = 1 + (volumeScaleForWord(word) - 1) * activeWordScaleEnvelope(progress);
+    const duration = end - start;
+    const progress = clamp((time - start) / duration, 0, 1);
+    const framesSinceStart = Math.max(0, (time - start) * fps);
+
+    const springBounce = spring({
+      frame: framesSinceStart,
+      fps,
+      config: {
+        damping: 12,
+        stiffness: 180,
+        mass: 0.7,
+      },
+    });
+
+    const springScale = activeWordScaleEnvelope(progress, duration);
+
+    yEm = -CWI_AE_WORD_LIFT_EM * Math.sin(Math.PI * progress) * (0.85 + 0.15 * springBounce);
+    scale = 1 + (volumeScaleForWord(word) - 1) * springScale;
   } else if (anticipating) {
     const progress = clamp((time - (start - anticipationSeconds)) / anticipationSeconds, 0, 1);
     yEm = CWI_AE_ANTICIPATION_DIP_EM * Math.sin(Math.PI * progress);
@@ -232,6 +258,9 @@ export const DynamicCaptions: React.FC<DynamicCaptionsProps> = ({ captions = [],
   }
 
   const processedWords = processBracketGroups(activeBlock.words);
+
+  // Verifica se a frase/bloco inteiro é composta por sussurros
+  const isWholeBlockWhisper = processedWords.length > 0 && processedWords.every(isWhisperWord);
 
   const blockType = activeBlock.type || "dialogue";
   const isMusic = blockType === "music";
@@ -297,7 +326,9 @@ export const DynamicCaptions: React.FC<DynamicCaptionsProps> = ({ captions = [],
 
           const shout = isShoutWord(w);
           const whisper = isWhisperWord(w);
-          const isEmphasized = shout || Boolean(w.emphasis);
+
+          // Sussurro isolado precisa retornar ao padrão; se o trecho todo for sussurro, não retorna
+          const shouldDecayWeight = shout || Boolean(w.emphasis) || (whisper && !isWholeBlockWhisper);
 
           const fontSize = BASE_FONT_SIZE;
           const motion = aeWordMotionState(normalizedCue, w, currentTime, fps, fontSize, frame);
@@ -326,7 +357,7 @@ export const DynamicCaptions: React.FC<DynamicCaptionsProps> = ({ captions = [],
               DEFAULT_FONT_WEIGHT + (targetWeight - DEFAULT_FONT_WEIGHT) * weightProgress
             );
           } else if (currentTime > w.end) {
-            if (isEmphasized) {
+            if (shouldDecayWeight) {
               const decayProgress = clamp((currentTime - w.end) / DECAY_DURATION, 0, 1);
               const smoothDecay = 1 - (decayProgress * decayProgress * (3 - 2 * decayProgress));
               fontWeight = Math.round(
