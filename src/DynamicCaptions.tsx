@@ -300,7 +300,7 @@ export const DynamicCaptions: React.FC<DynamicCaptionsProps> = ({ captions = [],
           backdropFilter: "blur(4px)",
           WebkitBackdropFilter: "blur(5px)",
           padding: "0px 5px",
-          minHeight: "64px",
+          minHeight: "35px",
           boxSizing: "border-box",
           display: "flex",
           justifyContent: "center",
@@ -322,108 +322,111 @@ export const DynamicCaptions: React.FC<DynamicCaptionsProps> = ({ captions = [],
         )}
 
         {processedWords.map((w: Word, idx: number) => {
-          if (!w || !w.text) return null;
+        if (!w || !w.text) return null;
 
-          const shout = isShoutWord(w);
-          const whisper = isWhisperWord(w);
+        const shout = isShoutWord(w);
+        const whisper = isWhisperWord(w);
 
-          // Sussurro isolado precisa retornar ao padrão; se o trecho todo for sussurro, não retorna
-          const shouldDecayWeight = shout || Boolean(w.emphasis) || (whisper && !isWholeBlockWhisper);
+        const fontSize = BASE_FONT_SIZE;
+        const motion = aeWordMotionState(normalizedCue, w, currentTime, fps, fontSize, frame);
 
-          const fontSize = BASE_FONT_SIZE;
-          const motion = aeWordMotionState(normalizedCue, w, currentTime, fps, fontSize, frame);
+        const isBracketText = w.text.includes("[") || w.text.includes("]");
 
-          const isBracketText = w.text.includes("[") || w.text.includes("]");
+        let wordColor = "#FFFFFF";
+        if (motion.spoken && !isBracketText) {
+          wordColor = speakerColor;
+        }
 
-          let wordColor = "#FFFFFF";
-          if (motion.spoken && !isBracketText) {
-            wordColor = speakerColor;
-          }
+        // 1. Define o peso alvo da palavra
+        let targetWeight = DEFAULT_FONT_WEIGHT;
+        if (shout) {
+          targetWeight = 900;
+        } else if (whisper) {
+          targetWeight = 300;
+        } else if (typeof w.weight === "number") {
+          targetWeight = w.weight;
+        }
 
-          let targetWeight = DEFAULT_FONT_WEIGHT;
-          if (shout) {
-            targetWeight = 900;
-          } else if (whisper) {
-            targetWeight = 300;
-          } else if (typeof w.weight === "number") {
-            targetWeight = w.weight;
-          }
+        // 2. Se o peso for diferente do padrão (e não for um bloco de sussurro contínuo), ele DEVE decair gradualmente de volta ao padrão
+        const shouldDecayWeight = targetWeight !== DEFAULT_FONT_WEIGHT && !(whisper && isWholeBlockWhisper);
 
-          let fontWeight = DEFAULT_FONT_WEIGHT;
+        let fontWeight = DEFAULT_FONT_WEIGHT;
 
-          if (currentTime >= w.start && currentTime <= w.end) {
-            const weightProgress = clamp((currentTime - w.start) / 0.15, 0, 1);
+        if (currentTime >= w.start && currentTime <= w.end) {
+          // Transição gradual para engrossar durante a fala
+          const weightProgress = clamp((currentTime - w.start) / 0.15, 0, 1);
+          fontWeight = Math.round(
+            DEFAULT_FONT_WEIGHT + (targetWeight - DEFAULT_FONT_WEIGHT) * weightProgress
+          );
+        } else if (currentTime > w.end) {
+          if (shouldDecayWeight) {
+            // Transição suave (decaimento) de volta ao peso padrão após o fim da palavra
+            const decayProgress = clamp((currentTime - w.end) / DECAY_DURATION, 0, 1);
+            const smoothDecay = 1 - (decayProgress * decayProgress * (3 - 2 * decayProgress));
             fontWeight = Math.round(
-              DEFAULT_FONT_WEIGHT + (targetWeight - DEFAULT_FONT_WEIGHT) * weightProgress
+              DEFAULT_FONT_WEIGHT + (targetWeight - DEFAULT_FONT_WEIGHT) * smoothDecay
             );
-          } else if (currentTime > w.end) {
-            if (shouldDecayWeight) {
-              const decayProgress = clamp((currentTime - w.end) / DECAY_DURATION, 0, 1);
-              const smoothDecay = 1 - (decayProgress * decayProgress * (3 - 2 * decayProgress));
-              fontWeight = Math.round(
-                DEFAULT_FONT_WEIGHT + (targetWeight - DEFAULT_FONT_WEIGHT) * smoothDecay
-              );
-            } else {
-              fontWeight = targetWeight;
-            }
+          } else {
+            fontWeight = targetWeight;
           }
+        }
 
-          const reservedWeight = Math.max(DEFAULT_FONT_WEIGHT, targetWeight);
-          const letterSpacing = whisper ? "0.03em" : "-0.015em";
+        const reservedWeight = Math.max(DEFAULT_FONT_WEIGHT, targetWeight);
+        const letterSpacing = whisper ? "0.03em" : "-0.015em";
 
-          return (
+        return (
+          <span
+            key={`${activeBlock.id || "b"}-${idx}`}
+            style={{
+              display: "inline-grid",
+              alignItems: "center",
+              justifyItems: "center",
+              position: "relative",
+            }}
+          >
             <span
-              key={`${activeBlock.id || "b"}-${idx}`}
+              aria-hidden="true"
               style={{
-                display: "inline-grid",
-                alignItems: "center",
-                justifyItems: "center",
-                position: "relative",
+                gridArea: "1 / 1",
+                fontFamily: `${fontFamily}, sans-serif`,
+                fontWeight: reservedWeight,
+                fontSize: `${fontSize}px`,
+                lineHeight: 1.2,
+                letterSpacing,
+                visibility: "hidden",
+                pointerEvents: "none",
+                whiteSpace: "pre",
               }}
             >
-              <span
-                aria-hidden="true"
-                style={{
-                  gridArea: "1 / 1",
-                  fontFamily: `${fontFamily}, sans-serif`,
-                  fontWeight: reservedWeight,
-                  fontSize: `${fontSize}px`,
-                  lineHeight: 1.2,
-                  letterSpacing,
-                  visibility: "hidden",
-                  pointerEvents: "none",
-                  whiteSpace: "pre",
-                }}
-              >
-                {w.text}
-              </span>
-
-              <span
-                style={{
-                  gridArea: "1 / 1",
-                  fontFamily: `${fontFamily}, sans-serif`,
-                  fontWeight,
-                  fontStyle: "normal",
-                  fontSize: `${fontSize}px`,
-                  lineHeight: 1.2,
-                  color: wordColor,
-                  display: "inline-block",
-                  position: "relative",
-                  zIndex: motion.active ? 10 : motion.anticipating ? 5 : 1,
-                  transform: motion.transform,
-                  transformOrigin: "center center",
-                  letterSpacing,
-                  textShadow: "none",
-                  textTransform: "none",
-                  willChange: "transform, color",
-                  whiteSpace: "pre",
-                }}
-              >
-                {w.text}
-              </span>
+              {w.text}
             </span>
-          );
-        })}
+
+            <span
+              style={{
+                gridArea: "1 / 1",
+                fontFamily: `${fontFamily}, sans-serif`,
+                fontWeight,
+                fontStyle: "normal",
+                fontSize: `${fontSize}px`,
+                lineHeight: 1.2,
+                color: wordColor,
+                display: "inline-block",
+                position: "relative",
+                zIndex: motion.active ? 10 : motion.anticipating ? 5 : 1,
+                transform: motion.transform,
+                transformOrigin: "center center",
+                letterSpacing,
+                textShadow: "none",
+                textTransform: "none",
+                willChange: "transform, color",
+                whiteSpace: "pre",
+              }}
+            >
+              {w.text}
+            </span>
+          </span>
+        );
+      })}
       </div>
     </div>
   );
