@@ -2,7 +2,6 @@ import React from "react";
 import { useCurrentFrame, useVideoConfig } from "remotion";
 import { loadFont } from "@remotion/google-fonts/NotoSans";
 
-// Carrega a família Noto Sans com os pesos numéricos necessários
 const { fontFamily } = loadFont("normal", {
   weights: ["300", "400", "600", "700", "800", "900"],
 });
@@ -149,6 +148,10 @@ function volumeScaleForWord(word: Word): number {
   return 1.15;
 }
 
+function activeWordScaleEnvelope(progress: number): number {
+  return Math.sin(Math.PI * progress);
+}
+
 function aeWordMotionState(
   cue: any,
   word: Word,
@@ -176,37 +179,10 @@ function aeWordMotionState(
   let yEm = 0;
   let scale = 1;
 
-  const shout = isShoutWord(word);
-  const isEmphasized = shout || Boolean(word.emphasis);
-
   if (active) {
     const progress = clamp((time - start) / (end - start), 0, 1);
     yEm = -CWI_AE_WORD_LIFT_EM * Math.sin(Math.PI * progress);
-
-    const whisper = isWhisperWord(word);
-    const whisperScale = whisper ? 1.03 : 1.0;
-    const wordBaseSize = word.size ?? 1.0;
-    const volScale = volumeScaleForWord(word);
-
-    const maxScale = Math.min(1.15, wordBaseSize * whisperScale * volScale);
-
-    const scaleEase = clamp((time - start) / 0.15, 0, 1);
-    const smoothRamp = scaleEase * scaleEase * (3 - 2 * scaleEase);
-
-    if (isEmphasized) {
-      scale = 1 + (maxScale - 1) * smoothRamp;
-    } else {
-      scale = 1 + (maxScale - 1) * Math.sin(Math.PI * progress) * smoothRamp;
-    }
-  } else if (isEmphasized && spoken && time > end && time <= end + DECAY_DURATION) {
-    const wordBaseSize = word.size ?? 1.0;
-    const volScale = volumeScaleForWord(word);
-    const maxScale = Math.min(1.15, wordBaseSize * volScale);
-
-    const decayProgress = clamp((time - end) / DECAY_DURATION, 0, 1);
-    const smoothDecay = 1 - (decayProgress * decayProgress * (3 - 2 * decayProgress));
-
-    scale = 1 + (maxScale - 1) * smoothDecay;
+    scale = 1 + (volumeScaleForWord(word) - 1) * activeWordScaleEnvelope(progress);
   } else if (anticipating) {
     const progress = clamp((time - (start - anticipationSeconds)) / anticipationSeconds, 0, 1);
     yEm = CWI_AE_ANTICIPATION_DIP_EM * Math.sin(Math.PI * progress);
@@ -215,6 +191,7 @@ function aeWordMotionState(
   let translateX = 0;
   let translateY = yEm * fontSize;
 
+  const shout = isShoutWord(word);
   if (shout && active) {
     translateX += Math.sin(frame * 2.5) * 1.8;
     translateY += Math.cos(frame * 2.8) * 1.8;
@@ -301,7 +278,7 @@ export const DynamicCaptions: React.FC<DynamicCaptionsProps> = ({ captions = [],
           alignItems: "center",
           flexWrap: "wrap",
           columnGap: "12px",
-          rowGap: "8px",  
+          rowGap: "8px", 
           maxWidth: "88%",
           overflow: "visible",
           border: isSFX
