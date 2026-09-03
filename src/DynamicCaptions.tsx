@@ -296,10 +296,10 @@ export const DynamicCaptions: React.FC<DynamicCaptionsProps> = ({ captions = [],
     >
       <div
         style={{
-          backgroundColor: "rgba(10, 10, 10, 1)",
+          backgroundColor: "rgba(0, 0, 0, 1)",
           backdropFilter: "blur(4px)",
           WebkitBackdropFilter: "blur(5px)",
-          padding: "10px 20px",
+          padding: "0px 5px",
           minHeight: "64px",
           boxSizing: "border-box",
           display: "flex",
