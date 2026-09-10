@@ -3,7 +3,7 @@ import { spring, useCurrentFrame, useVideoConfig } from "remotion";
 import { loadFont } from "@remotion/google-fonts/NotoSans";
 
 const { fontFamily } = loadFont("normal", {
-  weights: ["300", "400", "600", "700", "800", "900"],
+  weights: ["200", "300", "400", "600", "700", "800", "900"],
 });
 
 const CWI_AE_ANTICIPATION_FRAMES = 3;
@@ -259,7 +259,7 @@ export const DynamicCaptions: React.FC<DynamicCaptionsProps> = ({ captions = [],
 
   const processedWords = processBracketGroups(activeBlock.words);
 
-  // Verifica se a frase/bloco inteiro é composta por sussurros
+  // verifica se a frase/bloco inteiro é composta por sussurros
   const isWholeBlockWhisper = processedWords.length > 0 && processedWords.every(isWhisperWord);
 
   const blockType = activeBlock.type || "dialogue";
@@ -276,7 +276,7 @@ export const DynamicCaptions: React.FC<DynamicCaptionsProps> = ({ captions = [],
   };
 
   const BASE_FONT_SIZE = 44;
-  const DEFAULT_FONT_WEIGHT = 600;
+  const DEFAULT_FONT_WEIGHT = 400;
 
   return (
     <div
@@ -337,30 +337,27 @@ export const DynamicCaptions: React.FC<DynamicCaptionsProps> = ({ captions = [],
           wordColor = speakerColor;
         }
 
-        // 1. Define o peso alvo da palavra
         let targetWeight = DEFAULT_FONT_WEIGHT;
         if (shout) {
           targetWeight = 900;
         } else if (whisper) {
-          targetWeight = 300;
+          targetWeight = 200;
         } else if (typeof w.weight === "number") {
           targetWeight = w.weight;
         }
-
-        // 2. Se o peso for diferente do padrão (e não for um bloco de sussurro contínuo), ele DEVE decair gradualmente de volta ao padrão
         const shouldDecayWeight = targetWeight !== DEFAULT_FONT_WEIGHT && !(whisper && isWholeBlockWhisper);
 
         let fontWeight = DEFAULT_FONT_WEIGHT;
 
         if (currentTime >= w.start && currentTime <= w.end) {
-          // Transição gradual para engrossar durante a fala
+          // transição gradual para engrossar durante a fala
           const weightProgress = clamp((currentTime - w.start) / 0.15, 0, 1);
           fontWeight = Math.round(
             DEFAULT_FONT_WEIGHT + (targetWeight - DEFAULT_FONT_WEIGHT) * weightProgress
           );
         } else if (currentTime > w.end) {
           if (shouldDecayWeight) {
-            // Transição suave (decaimento) de volta ao peso padrão após o fim da palavra
+            // transição suave (decaimento) de volta ao peso padrão após o fim da palavra
             const decayProgress = clamp((currentTime - w.end) / DECAY_DURATION, 0, 1);
             const smoothDecay = 1 - (decayProgress * decayProgress * (3 - 2 * decayProgress));
             fontWeight = Math.round(
