@@ -118,6 +118,7 @@ function clamp(val: number, min: number, max: number): number {
   return Math.min(Math.max(val, min), max);
 }
 
+// classificação de grito
 function isShoutWord(word: Word): boolean {
   if (word.type === "shout") return true;
   if (typeof word.volumePercent === "number" && word.volumePercent >= 80) return true;
@@ -125,11 +126,13 @@ function isShoutWord(word: Word): boolean {
   return false;
 }
 
+// classificação de sussurro
 function isWhisperWord(word: Word): boolean {
   if (word.type === "whisper") return true;
   if (typeof word.volumePercent === "number" && word.volumePercent > 0 && word.volumePercent <= 30) return true;
   return false;
 }
+
 
 function volumeScaleForWord(word: Word): number {
   if (!word) return 1.15;
@@ -138,12 +141,6 @@ function volumeScaleForWord(word: Word): number {
 
   if (typeof word.volumePercent === "number") {
     return Math.min(1.15, 1 + ((clamp(word.volumePercent, 0, 100) - 50) / 100) * 0.15);
-  }
-  if (typeof word.emphasis === "number") {
-    return Math.min(1.15, 1 + clamp(word.emphasis, 0, 1) * 0.15);
-  }
-  if (typeof word.emphasis === "boolean") {
-    return word.emphasis ? 1.15 : 1.0;
   }
   return 1.15;
 }
