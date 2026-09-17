@@ -121,8 +121,7 @@ function clamp(val: number, min: number, max: number): number {
 // classificação de grito
 function isShoutWord(word: Word): boolean {
   if (word.type === "shout") return true;
-  if (typeof word.volumePercent === "number" && word.volumePercent >= 80) return true;
-  if (typeof word.weight === "number" && word.weight >= 800) return true;
+  if (typeof word.weight === "number" && word.weight >= 600) return true;
   return false;
 }
 
